@@ -1,0 +1,13 @@
+package academy.devdojo.springboot2;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CursoDevdojoSpringboot2EssentialsApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CursoDevdojoSpringboot2EssentialsApplication.class, args);
+    }
+
+}
