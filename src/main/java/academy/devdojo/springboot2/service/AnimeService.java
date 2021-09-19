@@ -5,23 +5,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class AnimeService {
 
-    private List<Anime> animes = Arrays.asList(new Anime(1L, "Anime 1"), new Anime(2L, "Anime 2"), new Anime(3L, "Anime 3"));
+    private static List<Anime> animes;
+
+    static {
+        animes = new ArrayList<>(List.of(new Anime(1L, "Anime 1"), new Anime(2L, "Anime 2"), new Anime(3L, "Anime 3")));
+    }
 
     public List<Anime> listAll() {
         return animes;
     }
 
     public Anime findById(Long id) {
-        return animes
-                .stream()
+        return animes.stream()
                 .filter(anime -> anime.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found"));
+    }
+
+    public Anime save(Anime anime) {
+        anime.setId(ThreadLocalRandom.current().nextLong(4, 1000000));
+        animes.add(anime);
+        return anime;
     }
 }
