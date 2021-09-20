@@ -2,6 +2,7 @@ package academy.devdojo.springboot2.handler;
 
 import academy.devdojo.springboot2.exception.BadRequestException;
 import academy.devdojo.springboot2.exception.BadRequestExceptionDetails;
+import academy.devdojo.springboot2.exception.ValidationDetails;
 import academy.devdojo.springboot2.exception.ValidationExceptionDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,13 @@ public class RestExceptionHandler {
         String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
         String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
 
+        List<ValidationDetails> errors = fieldErrors.stream().map(fieldError -> {
+            return ValidationDetails.builder()
+                    .field(fieldError.getField())
+                    .message(fieldError.getDefaultMessage())
+                    .build();
+        }).collect(Collectors.toList());
+
         return new ResponseEntity<>(
                 ValidationExceptionDetails.builder()
                         .timestamp(LocalDateTime.now())
@@ -46,6 +54,7 @@ public class RestExceptionHandler {
                         .developerMessage(exception.getClass().getName())
                         .fields(fields)
                         .fieldsMessage(fieldsMessage)
+                        .errors(errors)
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
