@@ -1,3 +1,13 @@
 server:
   error:
     include-stacktrace: ON_PARAM
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/anime
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
