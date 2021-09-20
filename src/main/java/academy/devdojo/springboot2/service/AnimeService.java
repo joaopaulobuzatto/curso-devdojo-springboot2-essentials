@@ -33,11 +33,7 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        Anime save = animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
-        if (true) {
-            throw new RuntimeException("bad code");
-        }
-        return save;
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
     public void delete(Long id) {
