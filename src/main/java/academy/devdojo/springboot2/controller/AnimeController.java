@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,8 +28,12 @@ public class AnimeController {
 
     @GetMapping
     public ResponseEntity<Page<Anime>> list(Pageable pageable) {
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
+    }
+
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<Anime>> listAll() {
+        return ResponseEntity.ok(animeService.listAllNonPageable());
     }
 
     @GetMapping(path = "/{id}")
