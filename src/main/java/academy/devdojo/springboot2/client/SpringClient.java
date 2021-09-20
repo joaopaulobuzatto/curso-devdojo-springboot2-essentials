@@ -34,12 +34,27 @@ public class SpringClient {
 //        Anime postResponse = new RestTemplate().postForObject("http://localhost:8080/animes", postRequest, Anime.class);
 //        log.info(postResponse);
 
-        Anime postRequest = Anime.builder().name("Post Request Exchange 2").build();
+        Anime postRequest = Anime.builder().name("Post Request Exchange").build();
         ResponseEntity<Anime> exchangePost = new RestTemplate().exchange("http://localhost:8080/animes",
                 HttpMethod.POST,
                 new HttpEntity<>(postRequest, createJsonHeader()),
                 Anime.class);
         log.info(exchangePost);
+
+        Anime putRequest = exchangePost.getBody();
+        putRequest.setName("Post Request Exchange Edited");
+        ResponseEntity<Void> exchangePut = new RestTemplate().exchange("http://localhost:8080/animes",
+                HttpMethod.PUT,
+                new HttpEntity<>(putRequest, createJsonHeader()),
+                Void.class);
+        log.info(exchangePut);
+
+        ResponseEntity<Void> exchangeDelete = new RestTemplate().exchange("http://localhost:8080/animes/{id}",
+                HttpMethod.DELETE,
+                null,
+                Void.class,
+                putRequest.getId());
+        log.info(exchangeDelete);
     }
 
     private static HttpHeaders createJsonHeader() {
