@@ -26,6 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
+@DisplayName("Tests for Anime Controller")
 class AnimeControllerTest {
 
     @InjectMocks

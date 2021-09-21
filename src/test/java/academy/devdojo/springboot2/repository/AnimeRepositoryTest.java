@@ -20,7 +20,7 @@ class AnimeRepositoryTest {
     private AnimeRepository animeRepository;
 
     @Test
-    @DisplayName("Save persist anime when Successful")
+    @DisplayName("save persist anime when successful")
     void save_PersistAnime_WhenSuccessful() {
         Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
@@ -34,7 +34,7 @@ class AnimeRepositoryTest {
     }
 
     @Test
-    @DisplayName("Save update anime when Successful")
+    @DisplayName("save update anime when successful")
     void save_UpdateAnime_WhenSuccessful() {
         Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
@@ -54,7 +54,7 @@ class AnimeRepositoryTest {
     }
 
     @Test
-    @DisplayName("Delete remove anime when Successful")
+    @DisplayName("delete remove anime when successful")
     void delete_RemoveAnime_WhenSuccessful() {
         Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
@@ -68,7 +68,7 @@ class AnimeRepositoryTest {
     }
 
     @Test
-    @DisplayName("Find by Name return list of anime when Successful")
+    @DisplayName("findByName return list of anime when successful")
     void findByName_ReturnListOfAnime_WhenSuccessful() {
         Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
@@ -84,7 +84,7 @@ class AnimeRepositoryTest {
     }
 
     @Test
-    @DisplayName("Find by Name return empty list of anime when anime is not found")
+    @DisplayName("findAllByName return empty list of anime when anime is not found")
     void findByName_ReturnEmptyListOfAnime_WhenAnimeIsNotFound() {
         List<Anime> animes = this.animeRepository.findAllByName("fake");
 
@@ -92,7 +92,7 @@ class AnimeRepositoryTest {
     }
 
     @Test
-    @DisplayName("Save throw ConstraintViolationException when name is empty")
+    @DisplayName("save throw ConstraintViolationException when name is empty")
     void save_ThrowConstraintViolationException_WhenNameIsEmpty() {
         Anime anime = new Anime();
 
