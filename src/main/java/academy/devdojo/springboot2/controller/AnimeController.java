@@ -4,7 +4,6 @@ import academy.devdojo.springboot2.domain.Anime;
 import academy.devdojo.springboot2.requests.AnimePostRequestBody;
 import academy.devdojo.springboot2.requests.AnimePutRequestBody;
 import academy.devdojo.springboot2.service.AnimeService;
-import academy.devdojo.springboot2.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -23,8 +22,6 @@ import java.util.List;
 public class AnimeController {
 
     private final AnimeService animeService;
-
-    private final DateUtil dateUtil;
 
     @GetMapping
     public ResponseEntity<Page<Anime>> list(Pageable pageable) {
