@@ -23,6 +23,12 @@ services:
       - "9090:9090"
     mem_limit: 128m
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+
 volumes:
   devdojo_data:
 

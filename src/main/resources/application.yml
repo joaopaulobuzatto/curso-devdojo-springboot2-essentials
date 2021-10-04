@@ -3,6 +3,8 @@ server:
     include-stacktrace: ON_PARAM
 
 spring:
+  application:
+    name: springboot2-essentials
   datasource:
     url: jdbc:postgresql://localhost:5432/anime
     username: postgres
